@@ -1,0 +1,2 @@
+# PPE
+Prognozowanie procesów ekonomicznych
