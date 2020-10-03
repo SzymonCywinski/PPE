@@ -72,4 +72,10 @@ min(forbes.wiek)
 ## ?? zadziała ??
 plot(forbes$wiek)
 
+### 
+### 
+forbes15 <- read.csv("forbes2020.csv", sep = ';',  header=T, na.string="NA");
+
+str(forbes15)
+
 ## koniec
