@@ -1,0 +1,45 @@
+Prognozowanie procesów ekonomicznych
+######################################
+
+Literatura:
+===========
+Adam Zagdański i Artur Suchowałko: Analiza i prognozowanie szeregów czasowych, PWN 2016
+http://quantup.pl/o-nas/ksiazka-szeregi-czasowe/
+
+Oprogramowanie
+==============
+Zainstalować samodzielnie
+
+R
+https://cran.r-project.org/bin/windows/base/
+
+Rstudio
+https://www.rstudio.com/products/rstudio/download/
+
+Namiary na materiały
+===================
+https://github.com/hrpunio/PPE
+
+Następnie próbujemy wykonać
+
+wprowadzenie0.R
+
+wprowadzenie.R
+
+
+Zaliczenie
+==========
+Projekt zaliczeniowy wykonany w formie pisemnej składający się z dwóch części:
+1) raportu z~przeprowadzonego badania oraz
+2) eseju dotyczący niestandardowej/nieomawianej
+na zajęciach metody prognozowania lub innego ciekawego aspektu problematyki
+prognozowania (szczegóły do ustalenia).
+
+Autorzy projektu powinni samodzielnie określić
+  ciekawy problem prognostyczny (co będzie dodatkowo
+punktowane), jeżeli będą
+do tego niezdolni to takowy zostanie zaproponowany przez prowadzącego
+
+Zaliczenie projektu odbędzie się na ostatnich zajęciach.
+
+## koniec

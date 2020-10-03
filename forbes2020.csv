@@ -1,0 +1,16 @@
+rank;name;worth;age;country;company;branch
+1;Jeff Bezos;113;56;US;Amazon;Technology
+2;Bill Gates;98;64;US;Microsoft;Technology
+3;Bernard Arnault;76;71;FR;LVMH;Retail
+4;Warren Buffett;67.5;89;US;Berkshire Hathaway;F&I
+5;Larry Ellison;59;75;US;software;Technology
+6;Amancio Ortega;55.1;84;ES;Zara;Retail
+7;Mark Zuckerberg;54.7;35;US;Facebook;Technology
+8;Jim Walton;54.6;71;US;Walmart;Retail
+9;Alice Walton;54.4;70;US;Walmart;Retail
+10;Rob Walton;54.1;75;US;Walmart;Retail
+11;Steve Ballmer;52.7;64;US;Microsoft;Technology
+12;Carlos Slim Helu;52.1;80;MX;telecom;Telecom
+13;Larry Page;50.9;47;US;Google;Technology
+14;Sergey Brin;49.1;46;US;Google;Technology
+15;Francoise Bettencourt Meyers;48.9;66;FR;L'Oreal;Retail

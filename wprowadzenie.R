@@ -29,18 +29,23 @@ end(hotele.ts)
 frequency(hotele.ts)
 
 
+str(hotele)
+
 ## wykres
+
 plot(hotele.ts)
 
 ## załadowanie biblioteki forecast
+
 library(forecast)
+
 ## jeżeli nie ma:
 install.packages("forecast", dependencies=TRUE)
+
 ### https://www.r-bloggers.com/installing-r-packages/
 ### install.packages("ggplot2", lib="/data/Rpackages/")
 ### library(ggplot2, lib.loc="/data/Rpackages/")
 ### .Renviron w windows nazywa się 
-
 
 ## wykresy sezonowe
 par(mfrow = c(2, 1))
@@ -55,8 +60,6 @@ hotele.ts.dekompozycja.add <- decompose (hotele.ts, "additive")
 plot (hotele.ts.dekompozycja.add)
 ## ?decompose
 
-## Box-Cox transformation (pominięte)
-
 ## Podział na zbiór uczący/testowy
 hotele.learn <- window (hotele.ts, end = c(2012, 3))
 start (hotele.learn)
@@ -66,17 +69,56 @@ length(hotele.learn)
 
 ## zbiór testowy
 hotele.test <- window(hotele.ts, start= c(2012, 4))
+
 start(hotele.test)
 end(hotele.test)
+
 length(hotele.test)
 
-## Modele ARIMA
-model.ARIMA1 <- auto.arima(hotele.learn)
-summary(model.ARIMA1)
+## Trend liniowy / metoda NK
+?tsm1
 
-tsdiag(model.ARIMA1)
-
-## dokończyć
+model.tsm1 <- ts.lm(hotele.learn ~ trend + season )
+summary(model.ts1m)
 
 
+## Model ETS (wygładzanie wykładnicze / exponental smooting)
+?etc
+
+model.ets < ets(hotele.learn)
+summary(model.ets)
+
+## Obiekty w przestrzeni roboczej
+
+ls()
+
+
+## Prognozy
+
+?forecast
+
+horyzont <- length(hotele.test)
+tslm.prog <- forecast(model.tslm, h=horyzony)
+
+ets.prog <- forecast(model.ets, h=horyzony)
+
+## Wykresy prognoz
+## Ustawienie parametru mfrow jako wektora dwuelementowego 
+## o wartościach (2, 2)
+par(mfrow = c(2,2))
+
+plot(tslm.prognozy)
+grid()
+
+plot(ets.prognozy)
+grid()
+
+## Ocena i porównanie dokładności prognoz
+kryteria <- c('RMSE', "MAE", "MAPE")
+
+accuracy(tslm.prognozy, hotele.test)[, kryteria]
+
+accuracy(ets.prognozy, hotele.test)[, kryteria]
+
+## koniec
 
