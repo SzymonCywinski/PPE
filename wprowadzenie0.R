@@ -73,7 +73,9 @@ min(forbes.wiek)
 plot(forbes$wiek)
 
 ### 
-### 
+###  Importowanie arkusza z pliku csv
+###  Wartości brakujące
+###  Kropka dziesiętna 
 forbes15 <- read.csv("forbes2020.csv", sep = ';',  header=T, na.string="NA");
 
 str(forbes15)

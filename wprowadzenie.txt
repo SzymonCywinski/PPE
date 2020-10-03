@@ -27,6 +27,11 @@ wprowadzenie0.R
 wprowadzenie.R
 
 
+FB200.csv -- pierwsze 200 (well 189) nazwisk z listy
+  https://www.forbes.com/billionaires/
+
+MZM.csv -- zwiedzający Muzeum Zamkowe Malborku (dane przekazane przez MZM)
+
 Zaliczenie
 ==========
 Projekt zaliczeniowy wykonany w formie pisemnej składający się z dwóch części:
