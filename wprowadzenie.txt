@@ -1,6 +1,12 @@
 Prognozowanie procesów ekonomicznych
 ######################################
 
+Cel:
+===
+
+Poznanie teorii i praktyki prognozowania z naciskiem na praktykę,
+w tym a zwłaszcza narzędzia: R, Rstudio, git, github 
+
 Literatura:
 ===========
 Adam Zagdański i Artur Suchowałko: Analiza i prognozowanie szeregów czasowych, PWN 2016
