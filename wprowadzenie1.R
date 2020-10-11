@@ -72,12 +72,77 @@ min(forbes.wiek)
 ## ?? zadziała ??
 plot(forbes$wiek)
 
-### 
+###  RStudio: Session-> Set_working Directory
 ###  Importowanie arkusza z pliku csv
 ###  Wartości brakujące
 ###  Kropka dziesiętna 
 forbes <- read.csv("FB2020.csv", dec=".", sep = ';',  header=T, na.string="NA");
 
 str(forbes)
-
+w  <- forbes[,3]
+p <- forbes[1,]
 ## koniec
+##
+p
+w <- forbes$worth
+billionares <- forbes[,"name"]
+## Podstawowe statystyki
+summary(forbes$worth)
+forbes.summary <- summary(forbes$worth)
+str(forbes.summary)
+forbes.summary[1]
+forbes.summary["Median"]
+forbes.median <- forbes.summary["Median"]
+forbes.median
+## drukowanie
+print (forbes.median)
+cat ("Mediana:", forbes.median)
+
+summary(forbes)
+
+## 
+forbes.table <- table(forbes$worth)
+length(forbes.table)
+?table
+cut(forbes$worth, breaks=seq(0,120, by=10))
+table(cut(forbes$worth, breaks=seq(0,120, by=10)))
+
+library("dplyr")
+nonus.forbes <- filter(forbes, country != "United States")
+nonus.forbes
+
+nonus.forbes.worth <- filter(forbes, country != "United States") %>% 
+  select(worth)
+## łącznie ile mają
+sum(nonus.forbes.worth)
+
+##
+select(forbes, country) %>% unique
+select(forbes, country) %>% unique %>% nrow
+
+## Grafika
+boxplot(forbes$worth)
+## color= breaks
+hist(forbes$worth)
+
+boxplot(worth ~ branch, data=forbes)
+select(forbes, branch) %>% unique %>% nrow
+
+forbes.x <- mutate(forbes, 
+  branch = case_when(branch == "Technology" ~ "IT", 
+                     branch == "Fashion & Retail" ~ "FR",
+                     TRUE ~ "Other"))
+forbes.x
+boxplot(worth ~ branch, data=forbes.x)
+
+## basic plot
+plot(forbes.x$age, forbes.x$worth)
+
+# better plot
+library ("ggplot2")
+# jeżeli nie ma to Rstudio zaproponuje instalację
+# albo install.packages("ggplot2")
+# 
+qplot(data=forbes.x, age, worth, color=branch)
+qplot(data=forbes.x, age, worth, facets = . ~ branch)
+

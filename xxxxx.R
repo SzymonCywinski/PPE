@@ -1,3 +1,4 @@
+###
 ### today <- Sys.Date()
 first.day <- as.Date(last(d$date))
 ### 90 days ago

@@ -1,0 +1,30 @@
+
+R version 3.5.2 (2018-12-20) -- "Eggshell Igloo"
+Copyright (C) 2018 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R jest oprogramowaniem darmowym i dostarczany jest BEZ JAKIEJKOLWIEK GWARANCJI.
+Możesz go rozpowszechniać pod pewnymi warunkami.
+Wpisz 'license()' lub 'licence()' aby uzyskać szczegóły dystrybucji.
+
+R jest projektem kolaboracyjnym z wieloma uczestnikami.
+Wpisz 'contributors()' aby uzyskać więcej informacji oraz
+'citation()' aby dowiedzieć się jak cytować R lub pakiety R w publikacjach.
+
+Wpisz 'demo()' aby zobaczyć demo, 'help()' aby uzyskać pomoc on-line, lub
+'help.start()' aby uzyskać pomoc w przeglądarce HTML.
+Wpisz 'q()' aby wyjść z R.
+
+> z <- read.csv("MZM_00.csv", dec=".", sep = ';',  header=T, na.string="NA");
+> 
+> str(z)
+'data.frame':	51 obs. of  4 variables:
+ $ data       : Factor w/ 51 levels "2015-01-01","2015-02-01",..: 1 2 3 4 5 6 7 8 9 10 ...
+ $ razem      : int  3278 4149 4623 13083 68485 66199 105843 95255 28021 13532 ...
+ $ zagraniczni: int  2144 1000 2128 5293 17384 18831 27809 28109 17853 8876 ...
+ $ krajowi    : num  5422 5149 6751 18376 85869 ...
+> 
+> 
+> proc.time()
+użytkownik     system   upłynęło 
+     0.152      0.021      0.160 
