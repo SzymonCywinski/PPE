@@ -57,6 +57,8 @@ Acf(hotele.ts)
 
 ## dekompozycja addytywna
 hotele.ts.dekompozycja.add <- decompose (hotele.ts, "additive")
+## https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/decompose
+##hotele.ts.dekompozycja.add <- decompose (hotele.ts, type="multiplicative")
 plot (hotele.ts.dekompozycja.add)
 ## ?decompose
 
@@ -98,19 +100,19 @@ ls()
 ?forecast
 
 horyzont <- length(hotele.test)
-tslm.prog <- forecast(model.tslm, h=horyzony)
+tslm.prog <- forecast(model.tslm, h=horyzont)
 
-ets.prog <- forecast(model.ets, h=horyzony)
+ets.prog <- forecast(model.ets, h=horyzont)
 
 ## Wykresy prognoz
 ## Ustawienie parametru mfrow jako wektora dwuelementowego 
 ## o wartościach (2, 2)
 par(mfrow = c(2,2))
 
-plot(tslm.prognozy)
+plot(tslm.prog)
 grid()
 
-plot(ets.prognozy)
+plot(ets.prog)
 grid()
 
 ## Ocena i porównanie dokładności prognoz
