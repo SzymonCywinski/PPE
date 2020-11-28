@@ -1,0 +1,101 @@
+---
+title: "Prognozowanie: projekt do wykonania :-)"
+author: "TP"
+date: "28/11/2020"
+output: html_document
+   
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Opis zadania
+
+* Projekt wykonują grupy max 3 osobowe
+
+* Każda grupa prognozuje dwa różne szeregi czasowe (w sensie sezonowość/jej brak;
+inna częstotliwość). Szeregi wyszukujemy samodzielnie. Zalecana częstotliwość
+miesięczna, kwartalna ale może być też dzienna czy tygodniowa
+
+* Każda grupa wyznacza kilka prognoz (różnymi metodami) i porównuje otrzymane wyniki
+
+* Przygotowuje raport w opisanym niżej formacie Rmd, wysyła go na githuba
+
+## Opis formatu Rmd
+
+Format R markdown to prosty sposób na tworzenie *dynamicznych dokumentów*. Dynamizm
+polega na tym, że dokument zawiera procedury języka R + opis. 
+**Przetworzenie dokumentu** powoduje wykonanie procedur oraz wstawienie wyników. Opis
+jest przepisywany. Takie podejście **jest lepsze** od modelu: w programie X liczę, potem
+kopiuję wyniki do programu Y i dodaję tam opis...
+
+To co czytasz jest przykładem dokumentu w formacie Rmd. Obejrzyj go w RStudio a następnie naciśnij guzik
+Knit () a zobaczysz dokument przetworzony.
+
+### Krótki przykład Rmd
+
+* Dokument rozpoczyna się od **nagłówka** określającgo m.in sposób przetwarzania
+
+* Po nagłówku wstawiamy treść
+
+* Śródtytuły rozpoczynamy od znaku `#` (jeden `#` to śródtytuł pierwszego stopnia,
+dwa drugiego, trzy trzeciego itd ale więcej raczej nie należy używać)
+
+* akapity oddzielamy pustym wierszem; kursywę wyróżniamy wstawieniem przed/po gwiadki `*kursywa*`; jeżeli użyjemy `##` to tekst zostanie 
+wyróżniony pogrubieniem `**pogrubione**`. Innych wyróżnień nie należy stosować
+
+Akapit zaczynający się od `*` jest traktowany jako element wypunktowania
+
+* Polecenia R które mają być wykonane umieszczamy wewnąrz bloku zaczynającego się od:
+
+<pre><code>```{r message=F, echo=False, }
+```</code></pre>
+
+Uwaga w dokumencie Rmd są wstawione znaczniki `<pre>/<code>` a to dlatego że
+bez nich Rstudio by starało się przetworzyć blok. Możemy sterować tym co pojawi się
+w dokumencie za pomocą deklaracji postaci X=YL
+
+I tak: **echo** (czy ma być przepisany blok tj .polecenia R);
+**message**  (czy mają się pojawić komunikaty generowane przy przetwarzaniu przez R);
+**warning** (czy mają się pojawić ostrzeżenia generowane przy przetwarzaniu przez R.)
+
+Typowo deklarujemy `message=F`, `warning=F` żeby nie zaśmiecać dokumentu
+nieistotnymi komunikatami a `echo=T` lub `echo=F` w zależności od tego
+czy mają się pojawić polecenia R czy też nie.
+
+* Rysunki generowane przez R są wstawiane automatycznie. Jeżeli mamy potrzebę
+wstawienia gotowego rysunku, przygotowanego w innym programie to używamy takigo
+oto triku:
+
+```
+![Podpis pod rysunkiem](plik-z-rysunkiem.png
+
+```
+
+* Adresy internetowe wpisujemy tak jak inny tekst. Są one *inteligentnie* zamieniane
+na odsyłacze, np. 
+https://rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf
+Jeżeli adres ma być ukryty a zamiast niego ma się pojawić klikalny tekst 
+to należy napisać tak 
+
+```
+[tu kliknij](https://www.google.com)
+```
+
+czyli to samo co w przypadku wstawienia rysunku 
+tylko bez znaku wykrzyknika.
+
+I to wszystko...
+
+## Publikowanie raportu
+
+Raport należy wysłać do repozytorium pod adresem
+https://github.com/hrpunio/PPE/tree/master/projekty_2020
+
+Żeby móc dodawać do https://github.com/hrpunio/PPE/tree/master/projekty_2020
+trzeba założyć konto na serwerze github.com
+a następnie wysłać mi login użytkownika. Ja dodam tego użytkownika
+do uprawnionych do zapisywania do repozytorium.
+
+Szczegóły na następnym spotkaniu bo nikt mi jeszcze nie przysłał swojego loginu.
