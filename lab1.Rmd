@@ -99,3 +99,4 @@ a następnie wysłać mi login użytkownika. Ja dodam tego użytkownika
 do uprawnionych do zapisywania do repozytorium.
 
 Szczegóły na następnym spotkaniu bo nikt mi jeszcze nie przysłał swojego loginu.
+
