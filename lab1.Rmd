@@ -1,0 +1,160 @@
+---
+title: "Prognozowanie: projekt do wykonania :-)"
+author: "TP"
+date: "28/11/2020"
+output: html_document
+   
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Opis zadania
+
+* Projekt wykonują grupy max 3 osobowe
+
+* Każda grupa prognozuje dwa różne szeregi czasowe (w sensie sezonowość/jej brak;
+inna częstotliwość). Szeregi wyszukujemy samodzielnie. Zalecana częstotliwość
+miesięczna, kwartalna ale może być też dzienna czy tygodniowa
+
+* Każda grupa wyznacza 3 prognozy (różnymi metodami) i porównuje otrzymane wyniki (szczegóły patrz niżej)
+
+* Każda grupa przygotowuje 2 raporty w opisanym niżej formacie Rmd i wysyła je na githuba
+
+* Żeby **ułatwić zadanie maksymalnie** przygotowano **przykład oraz szablon**. Przykład to
+pliki `mleko.R` oraz `mleko.Rmd`. Szablon to `Projek1.R` oraz `Projekt1.Rmd`.
+
+* W plikach `Projekt1.R` oraz `Projekt1.Rmd`  miejsca, które wymagają dopasowania
+do konretnego projektu wyróżniono jako  `☛☛☛ ### ☚☚☚` (gdzie ### oznacza coś, 
+co trzeba wpisać samodzielnie zaś znaki  ☛/☚ oczywiście usunąć). Dopasowanie szablonu do konkretnego
+projektu polega na wypełnieniu **tylko tych fragmentów** resztę zostawiamy bez zmian.
+
+* Zalecane jest **najpierw** wykonanie wszystkich obliczeń w pliku `Projekt1.R`
+a jak już wszystko będzie działać, dopisanie komentarzy/objaśnień do pliku `Projekt1.Rmd`.
+
+* Koniecznie należy zmienić nazwę `Projekt1.Rmd` na odpowiadający temu co projekt prognozuje 
+**oraz po podkreślniku** 
+dopisanie bieżącego roku (2020 nawet jak będziemy wysyłali w styczniu). Np jeżeli
+prognozowana jest liczba oddanych do użytku mieszkań to dobrą nazwą będzie `mieszkania_2020.Rmd`
+
+* Na githuba wysyłamy dwa pliki Rmd (oddzielnie dla dwóch projektów) + pliki z danymi CSV (niech plik
+CSV nazywa się **tak jak plik Rmd**, tylko zamiast Rmd ma rozszerzenie `csv`), innych
+plików nie wysyłamy
+
+
+## Opis formatu Rmd
+
+**W zasadzie niepotrzebny, bo państwo mają wypełnić szablon** ale jeżeli ktoś chce świadomie wypełniać:-)
+
+Format R markdown to prosty sposób na tworzenie *dynamicznych dokumentów*. Dynamizm
+polega na tym, że dokument zawiera procedury języka R + opis. 
+**Przetworzenie dokumentu** powoduje wykonanie procedur oraz wstawienie wyników. Opis
+jest przepisywany. Takie podejście **jest lepsze** od modelu: w programie X liczę, potem
+kopiuję wyniki do programu Y i dodaję tam opis...
+
+To co czytasz jest przykładem dokumentu w formacie Rmd. Obejrzyj go w RStudio a następnie naciśnij guzik
+Knit () a zobaczysz dokument przetworzony.
+
+### Krótki przykład Rmd
+
+* Dokument rozpoczyna się od **nagłówka** określającgo m.in sposób przetwarzania
+
+* Po nagłówku wstawiamy treść
+
+* Śródtytuły rozpoczynamy od znaku `#` (jeden `#` to śródtytuł pierwszego stopnia,
+dwa drugiego, trzy trzeciego itd ale więcej raczej nie należy używać)
+
+* akapity oddzielamy pustym wierszem; kursywę wyróżniamy wstawieniem przed/po gwiadki `*kursywa*`; jeżeli użyjemy `##` to tekst zostanie 
+wyróżniony pogrubieniem `**pogrubione**`. Innych wyróżnień nie należy stosować
+
+Akapit zaczynający się od `*` jest traktowany jako element wypunktowania
+
+* Polecenia R które mają być wykonane umieszczamy wewnąrz bloku zaczynającego się od:
+
+<pre><code>```{r message=F, echo=False, }
+```</code></pre>
+
+Uwaga w dokumencie Rmd są wstawione znaczniki `<pre>/<code>` a to dlatego że
+bez nich Rstudio by starało się przetworzyć blok. Możemy sterować tym co pojawi się
+w dokumencie za pomocą deklaracji postaci X=YL
+
+I tak: **echo** (czy ma być przepisany blok tj .polecenia R);
+**message**  (czy mają się pojawić komunikaty generowane przy przetwarzaniu przez R);
+**warning** (czy mają się pojawić ostrzeżenia generowane przy przetwarzaniu przez R.)
+
+Typowo deklarujemy `message=F`, `warning=F` żeby nie zaśmiecać dokumentu
+nieistotnymi komunikatami a `echo=T` lub `echo=F` w zależności od tego
+czy mają się pojawić polecenia R czy też nie.
+
+* Rysunki generowane przez R są wstawiane automatycznie. Jeżeli mamy potrzebę
+wstawienia gotowego rysunku, przygotowanego w innym programie to używamy takigo
+oto triku:
+
+```
+![Podpis pod rysunkiem](plik-z-rysunkiem.png
+
+```
+
+* Adresy internetowe wpisujemy tak jak inny tekst. Są one *inteligentnie* zamieniane
+na odsyłacze, np. 
+https://rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf
+Jeżeli adres ma być ukryty a zamiast niego ma się pojawić klikalny tekst 
+to należy napisać tak 
+
+```
+[tu kliknij](https://www.google.com)
+```
+
+czyli to samo co w przypadku wstawienia rysunku 
+tylko bez znaku wykrzyknika.
+
+I to wszystko...
+
+## Publikowanie raportu
+
+Raport należy wysłać do repozytorium pod adresem
+https://github.com/hrpunio/PPE_projekty
+
+Żeby móc dodawać do https://github.com/hrpunio/PPE_projekty
+trzeba założyć konto na serwerze github.com
+a następnie wysłać mi login użytkownika. Ja dodam tego użytkownika
+do uprawnionych do zapisywania do repozytorium (trzeba potwierdzić moje zaproszenie)
+
+## Podłączenie się do https://github.com/hrpunio/PPE.git
+
+Trzeba zainstalować program git, który znajduje się tutaj
+https://gitforwindows.org/ (albo https://git-scm.com/download/win)
+
+W konsoli Rstudio wpisz:
+
+```
+install.packages("usethis")
+```
+
+następnie wpisz:
+
+```
+library(usethis)
+use_git_config(user.name = "Tomasz Przechlewski", user.email = "rudolf.von.ems@gmail.com")
+```
+
+Podany email musi być identyczny z tym, pod którym założono konto na Github.
+
+Teraz można już ściągnąć projekt:
+
+`File > Create Project` następnie wybierz `Version Control` (ostatnia pozycja) oraz Git oczywiście.
+Teraz trzeba wpisać `https://github.com/hrpunio/PPE.git` w pole `Repository URL`
+oraz wybrać nazwę dla katalogu w którym projekt będzie skopiowany na 
+naszym komputerze (`Project directory name`). Możemy
+wpisać `PPE`. Ostatnią rzeczą jest określenie katalogu, gdzie ma zostać utworzony katalog
+z projektem (`Create project as subdirectory of`).
+
+## Pomocne materiały
+
+https://cfss.uchicago.edu/setup/git-cache-credentials/
+
+https://marcinstepniak.eu/post/intro-to-very-basic-github-rstudio/
+(A very basic intro to GitHub and RStudio)
+
+https://www.statsandr.com/blog/how-to-upload-r-code-on-github-example-with-an-r-script-on-mac-os/
