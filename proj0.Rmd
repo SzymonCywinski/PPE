@@ -1,0 +1,105 @@
+---
+title: "??Prognozowanie skupu mleka w Polsce??"
+author: "??Autorzy??"
+date: "??Data??"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## ??
+
+Prognoza skupu mleka zostanie zbudowana w oparciu o dane miesięczne
+z okresu 2010/1--2020/10, pochodzące z Biuletynu Statystycznego GUS 10/2020.
+
+
+```{r echo=FALSE}
+library ("forecast")
+t <- read.csv("mleko.csv", dec=",", sep = ';',  header=T, na.string="NA");
+```
+
+Analizę danych rozpoczynamy od wykresu.
+[**Czy dane są kompletne?;
+Czy występuje trend i/lub sezonowość;
+Czy występują obserwacje nietypowe?;
+Podać podstawowe charakterystyki, tj. średnia/maksymalna/minimalna **]
+
+```{r echo=FALSE}
+# zamiana na szereg czasowy o pierwszej obserwacji z 1/2010
+t <-ts(t, start=c(2010, 1), frequency=12)
+plot(t)
+```
+
+Zgodnie z oczekiwaniami można zaobserwować sezonowość. Występuje także wyraźny
+trend. Potwierdzeniem sezonowości skupu mleka jest wykres sezonowy:
+
+```{r echo=FALSE}
+# rainbow(n) gdzie n=liczba różnych kolorów
+# jeżeli n < liczby lat, to kolory będą się powtarzać
+seasonplot(t, year.labels = TRUE, main="wykres sezonowy", col = rainbow(11))
+```
+
+Skup mleka jest najwyższy w miesiącach maj--sierpień a niższy w zimie (listopad i luty). 
+
+Statystyki zbiorcze dla skupu mleka kształtują się następujaco (odpowiednio
+średnia/maksymalna/minimalna)
+
+```{r echo=FALSE}
+## statystyki zbiorcze
+# argument na.rm=T jest potrzebny jeżeli szerg ma wartości NA
+t.mean <- mean(t, na.rm = T)
+t.max <- max(t, na.rm = T)
+t.min <- mean(t, na.rm = T)
+t.mean
+t.max
+t.min
+```
+
+## Zbiór danych dzielimy na uczący i testowy
+
+```{r echo=FALSE}
+## zamiast window lepiej użyć head/tail
+## tl <- head(t, round(length(t) * 0.8))
+## h <- 99
+## albo tl <- head(t, length(t) - h)
+## tt <- tail(AirPassengers, h)
+tt = 
+```
+
+## Prognozowanie za pomocą trendu liniowego
+
+```{r}
+hmax <- 6
+fit <- tslm(t ~ trend + season, h=hmax )
+summary(fit)
+#plot(fit)
+checkresiduals(fit)
+```
+## Prognozowanie za pomocą wygładzania wykładniczego
+
+[**Przetworzenie dokumentu może chwilę potrwać z uwagi na wykorzystywane funkcje ets/auto.arima**]
+
+```{r}
+fit <- ets(t)
+summary(fit)
+
+## dalej `jedziemy' tak:
+
+plot(fit)
+
+summary(fit)
+
+checkresiduals(fit)
+```
+
+## Arima
+
+```{r}
+fit <- auto.arima(t)
+summary(fit)
+checkresiduals(fit)
+```
+
+## Porównanie prognoz

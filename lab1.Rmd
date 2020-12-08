@@ -18,11 +18,34 @@ knitr::opts_chunk$set(echo = TRUE)
 inna częstotliwość). Szeregi wyszukujemy samodzielnie. Zalecana częstotliwość
 miesięczna, kwartalna ale może być też dzienna czy tygodniowa
 
-* Każda grupa wyznacza kilka prognoz (różnymi metodami) i porównuje otrzymane wyniki
+* Każda grupa wyznacza 3 prognozy (różnymi metodami) i porównuje otrzymane wyniki (szczegóły patrz niżej)
 
-* Przygotowuje raport w opisanym niżej formacie Rmd, wysyła go na githuba
+* Każda grupa przygotowuje 2 raporty w opisanym niżej formacie Rmd i wysyła je na githuba
+
+* Żeby **ułatwić zadanie maksymalnie** przygotowano **przykład oraz szablon**. Przykład to
+pliki `mleko.R` oraz `mleko.Rmd`. Szablon to `Projek1.R` oraz `Projekt1.Rmd`.
+
+* W plikach `Projekt1.R` oraz `Projekt1.Rmd`  miejsca, które wymagają dopasowania
+do konretnego projektu wyróżniono jako  `☛☛☛ ### ☚☚☚` (gdzie ### oznacza coś, 
+co trzeba wpisać samodzielnie zaś znaki  ☛/☚ oczywiście usunąć). Dopasowanie szablonu do konkretnego
+projektu polega na wypełnieniu **tylko tych fragmentów** resztę zostawiamy bez zmian.
+
+* Zalecane jest **najpierw** wykonanie wszystkich obliczeń w pliku `Projekt1.R`
+a jak już wszystko będzie działać, dopisanie komentarzy/objaśnień do pliku `Projekt1.Rmd`.
+
+* Koniecznie należy zmienić nazwę `Projekt1.Rmd` na odpowiadający temu co projekt prognozuje 
+**oraz po podkreślniku** 
+dopisanie bieżącego roku (2020 nawet jak będziemy wysyłali w styczniu). Np jeżeli
+prognozowana jest liczba oddanych do użytku mieszkań to dobrą nazwą będzie `mieszkania_2020.Rmd`
+
+* Na githuba wysyłamy dwa pliki Rmd (oddzielnie dla dwóch projektów) + pliki z danymi CSV (niech plik
+CSV nazywa się **tak jak plik Rmd**, tylko zamiast Rmd ma rozszerzenie `csv`), innych
+plików nie wysyłamy
+
 
 ## Opis formatu Rmd
+
+**W zasadzie niepotrzebny, bo państwo mają wypełnić szablon** ale jeżeli ktoś chce świadomie wypełniać:-)
 
 Format R markdown to prosty sposób na tworzenie *dynamicznych dokumentów*. Dynamizm
 polega na tym, że dokument zawiera procedury języka R + opis. 
@@ -91,11 +114,47 @@ I to wszystko...
 ## Publikowanie raportu
 
 Raport należy wysłać do repozytorium pod adresem
-https://github.com/hrpunio/PPE/tree/master/projekty_2020
+https://github.com/hrpunio/PPE_projekty
 
-Żeby móc dodawać do https://github.com/hrpunio/PPE/tree/master/projekty_2020
+Żeby móc dodawać do https://github.com/hrpunio/PPE_projekty
 trzeba założyć konto na serwerze github.com
 a następnie wysłać mi login użytkownika. Ja dodam tego użytkownika
-do uprawnionych do zapisywania do repozytorium.
+do uprawnionych do zapisywania do repozytorium (trzeba potwierdzić moje zaproszenie)
 
-Szczegóły na następnym spotkaniu bo nikt mi jeszcze nie przysłał swojego loginu.
+## Podłączenie się do https://github.com/hrpunio/PPE.git
+
+Trzeba zainstalować program git, który znajduje się tutaj
+https://gitforwindows.org/ (albo https://git-scm.com/download/win)
+
+W konsoli Rstudio wpisz:
+
+```
+install.packages("usethis")
+```
+
+następnie wpisz:
+
+```
+library(usethis)
+use_git_config(user.name = "Tomasz Przechlewski", user.email = "rudolf.von.ems@gmail.com")
+```
+
+Podany email musi być identyczny z tym, pod którym założono konto na Github.
+
+Teraz można już ściągnąć projekt:
+
+`File > Create Project` następnie wybierz `Version Control` (ostatnia pozycja) oraz Git oczywiście.
+Teraz trzeba wpisać `https://github.com/hrpunio/PPE.git` w pole `Repository URL`
+oraz wybrać nazwę dla katalogu w którym projekt będzie skopiowany na 
+naszym komputerze (`Project directory name`). Możemy
+wpisać `PPE`. Ostatnią rzeczą jest określenie katalogu, gdzie ma zostać utworzony katalog
+z projektem (`Create project as subdirectory of`).
+
+## Pomocne materiały
+
+https://cfss.uchicago.edu/setup/git-cache-credentials/
+
+https://marcinstepniak.eu/post/intro-to-very-basic-github-rstudio/
+(A very basic intro to GitHub and RStudio)
+
+https://www.statsandr.com/blog/how-to-upload-r-code-on-github-example-with-an-r-script-on-mac-os/
