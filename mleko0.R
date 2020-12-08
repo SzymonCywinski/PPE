@@ -4,6 +4,7 @@ sessionInfo()
 t <- read.csv("mleko.csv", dec=",", sep = ';',  header=T, na.string="NA");
 t <-ts(t, start=c(2010, 1), frequency=12)
 end(t)
+
 ## Analizę danych rozpoczynamy od wykresu.
 ## 1. Czy dane są kompletne?;
 ## 2. Czy występuje trend i/lub sezonowość;
