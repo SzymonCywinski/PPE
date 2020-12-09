@@ -121,40 +121,55 @@ trzeba założyć konto na serwerze github.com
 a następnie wysłać mi login użytkownika. Ja dodam tego użytkownika
 do uprawnionych do zapisywania do repozytorium (trzeba potwierdzić moje zaproszenie)
 
-## Podłączenie się do https://github.com/hrpunio/PPE.git
+## Podłączenie do RStudio
 
-Trzeba zainstalować program git, który znajduje się tutaj
-https://gitforwindows.org/ (albo https://git-scm.com/download/win)
+Trzeba zainstalować program git, https://git-scm.com/download/win
 
-W konsoli Rstudio wpisz:
+Upewnić się że RStudio wie gdzie znajduje się program `git.exe`:
+Tools→Global Options→Git/Svn w polu `git executable` powinna być 
+ścieżka do programu `git.exe`, jeżeli nie ma należy wpisać.
 
-```
-install.packages("usethis")
-```
+Ściągamy https://github.com/hrpunio/PPE_projekty: 
+`File→New Project→Version Control→Git` w polu *repository url* wpisujemy 
+adres repozytorium (kończący się na `.git`; do pobrania ze strony Githuba);
+w polu *Project directory name* wpisujemy nazwę katalogu do którego 
+zostanie ściągnięte repozytorium, np. `PPE_projekty`;
+w polu *Create project as subdirectory of* wybieramy katalog w który
+zostanie stworzony katalog `PPE_projekty`.
 
-następnie wpisz:
+Naciskamy `Create project`. Zawartość https://github.com/hrpunio/PPE_projekty
+zostanie pobrana i zapisana do `PPE_projekty`.
+RStudio zainicjalizuje nowy projekt.
 
-```
-library(usethis)
-use_git_config(user.name = "Tomasz Przechlewski", user.email = "rudolf.von.ems@gmail.com")
-```
+Kopiujemy do `PPE_projekty` pliki z projektem, np niech to będą
+`mieszkania_2020.Rmd` + `mieszkania_2020.csv`
 
-Podany email musi być identyczny z tym, pod którym założono konto na Github.
+Naciskamy ikonę git w RStudio, wybieramy `Commit`; lewe górne okno zawiera
+listę zmodyfikowanych plików w katalogu `PPE_projekty`.
+Powinny tam być pliki `mieszkania_2020.Rmd` + `mieszkania_2020.csv`.
+Odptaszkowujemy
+`mieszkania_2020.Rmd` oraz `mieszkania_2020.csv`
 
-Teraz można już ściągnąć projekt:
+W oknie obok (górne/prawe) wpisujemy **opis zmiany** (np. `Przesyłamy projekt do oceny`) naciskamy `Commit`
 
-`File > Create Project` następnie wybierz `Version Control` (ostatnia pozycja) oraz Git oczywiście.
-Teraz trzeba wpisać `https://github.com/hrpunio/PPE.git` w pole `Repository URL`
-oraz wybrać nazwę dla katalogu w którym projekt będzie skopiowany na 
-naszym komputerze (`Project directory name`). Możemy
-wpisać `PPE`. Ostatnią rzeczą jest określenie katalogu, gdzie ma zostać utworzony katalog
-z projektem (`Create project as subdirectory of`).
+Przypuszczalnie operacja skończy się błędem bo powinniśmy 
+się uprzednio zidentyfikować. Nic straconego robimy to teraz 
+(jak to zrobić 
+pokazano na filmie https://www.youtube.com/watch?v=7vNQh-2TwoI)
 
-## Pomocne materiały
+Naciskamy `Commit` powtórnie; zamykamy okno; naciskamy ikonę Push (zielona
+strzałka w prawym górnym rogu); dokonujemy autoryzacji (nazwa/hasło)
 
-https://cfss.uchicago.edu/setup/git-cache-credentials/
+Jeżeli uda nam się bez błędu dokonać autoryzacji to 
+`mieszkania_2020.Rmd` oraz `mieszkania_2020.csv`
+zostaną wysłane na serwer. Koniec zrobione.
 
-https://marcinstepniak.eu/post/intro-to-very-basic-github-rstudio/
-(A very basic intro to GitHub and RStudio)
+## Filmy instruktarzowe
 
-https://www.statsandr.com/blog/how-to-upload-r-code-on-github-example-with-an-r-script-on-mac-os/
+* Instalowanie R/Rstudio https://www.youtube.com/watch?v=zO7iOLT4YxU
+
+* Integracja RStudio/Github https://www.youtube.com/watch?v=7vNQh-2TwoI
+
+* Importowanie danych z Biuletynu Statystycznego GUS z wykorzystaniem LibreOffice https://www.youtube.com/watch?v=OeoFVs7trgo
+
+* Redagowanie/tworzenie raportu w formacie Rmd https://www.youtube.com/watch?v=5Oh7U_mbkPo
