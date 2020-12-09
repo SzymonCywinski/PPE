@@ -10,7 +10,7 @@
 library ("forecast")
 library ("fpp2")
 
-## pokaż wersje pakietów
+## pokaż wersje pakietów ###
 sessionInfo()
 
 ## załadowanie danych z pliku CSV zamiana na typ TS (szereg czasowy)
