@@ -113,23 +113,97 @@ res <- residuals (fit)
      
 ## wizualna ocena nieobciążoności/stałości wariancji
 plot (res, main='tytuł-wykresu', xlab='ośX', ylab='ośY')
+```
+na tym wykresie reszty powinny przypadkowo oscylować wokół zera. Jeżeli zaś są systematycznie
+powyżej/poniżej to świadczy to o tym że są **obciążone** Jeżeli systematycznie rosną/maleją, to nie mają stałej wariancji
 
+```
 ## wizualna ocena nieskorelowania
 ## funkcja autokorelacji
 Acf(res, main='...')
+```
 
-## albo test Boxa-Ljunga, duże wartości p świadczą o braku AC
-Box.test(res, type='Ljung-Box')
+wykres ten posiada dwie poziome linie określające maksymalną akceptowaną wielkość współczynnika korelacji, którą
+można uznać za przypadkową 
+a nie wynikające z tego, że składnik losowy z dwóch okresów jest istotnie skorelowany. Słupki dla kolejnych
+opóźnień powinny być poniżej/powyżej tych linii
 
+```
 ## wizualna ocena normalności reszt
 hist(res)
 ```
 
-### Uproszczona procedura wyboru modelu
+Kształt histogramu powinien być zbliżony do normalnego, w szczególności winien być
+zbliżony do symetrycznego. Asymetria świadczy że rozkład reszt **nie jest normalny**.
+
+
+Oprócz metod *na oko* można użyć testów.
+Idea testów statystycznych jest następująca: stawiamy pewną (hipo)tezę, którą 
+**weryfikujemy** używając do tego stosownego zbioru danych.
+
+Prosty przykład: rzucamy monetą i stawiamy hipotezę że jest symetryczna co by oznaczało że
+prawdopodobieństwo wyrzucenia orła albo reszki jest jednakowe. Rzucamy monetą, wypadło orzeł,
+czy można coś powiedzieć o symetryczności monety? Rzucamy dwa razy wypadł w obu przypadkach orzeł. 
+Takie coś się zdarza  1 raz na 4, więc także niespecjalnie rzadko. Rzucamy dalej. W 12 próbach
+orzeł wypadł 11 razy. Takie coś się zdarza 12 razy na $2^{12}$ prób czyli około dwa razy na 100 prób. 
+Sprawa zaczyna być podejrzana, że moneta jest faktycznie symetryczna.
+
+Wyznaczamy z góry i arbitralnie prawdopodobieństwo popełnienia błędu przy weryfikowaniu naszej (hipo)tezy.
+Np 5% (co oznacza że przeciętnie mylimy się 5 razy na 100). Przy 5% błędzie eksperyment z 12 rzutami
+wskazał, że moneta jest niesymetryczna, bo zdarzenie 
+pn. *wypadło 11 orłów* zdarza się raz na 50 razy czyli około 2% (przypomnę, 
+że zdarzenie dwa orły na dwa rzuty to aż 25%.)
+
+Czy można powiedzieć rzucając raz czy dwa razy że moneta jest symetryczna? No nie bardzo. Raczej można powiedzieć
+że **nic nie wskazuje że jest niesymetryczna** a to co innego.
+
+Wracając do 11 orłów. Prawdopodobieństwo które założyliśmy to prawdopodobieństwo zdarzenia że *moneta
+jest symetryczna* a mimo to wypadło 11 orłów na 12 prób. Czyli monetę zdyskwalifikowaliśmy niesłusznie. 
+To się nazywa *false-positive* (uznanie za błąd czegoś co błędem nie jest) 
+albo błąd pierwszego rodzaju (*type I error*). 
+
+Ale jest jeszcze drugi możliwy błąd zwany *false-negative* (uznanie za prawdę czegoś co jest błędne, błąd 
+drugiego rodzaju albo *type II error*). **Prawdopodobieństwa popełnienia tego błędu
+nie określilśmy** zatem nie można powiedzieć **moneta jest symetryczna** jeżeli eksperyment zakończył się
+wynikiem z prawdopodobieństwem mniejszym od zakładanego (dla statystyka takie 
+twierdzenie zawsze będzie **prawdą z określonym błędem** a tutaj nie ma tego określonego błędu)
+
+Reasumując jeżeli w wyniku eksperymentu otrzymamy wynik mało prawdopodobny z punktu widzenia zakładanej
+hipotezy to odrzucamy ją a jak nie to **nie mamy podstaw do odrzucenia** (co nie oznacza, że przyjmujemy).
+
+W nauce generalnie wykazanie fałszywości (**falsyfikacja) jest bardziej pewna niż wykazanie prawdziwości.**
+
+Jedynie hipotezy sfalsyfikowane są naukowe (prawdziwe).
+Nauka rozwija się dzięki kolejnemu odrzucaniu sfalsyfikowanych teorii. Indukcja to lipa (BTW)
+
+Nawet nie wiedząc niczego więcej można interpretować z mądrą miną **każdy test statystyczny** ideą których jest
+podjęcie decyzji o pewnej hipotezie na podstawie wyniku eksperymentu. Jeżeli ten wynik jest mało prawdopodobny
+to hipotezę należy odrzucić co oznacza przyjęcie za prawdę **hipotezy alternatywnej**, która zwykle jest
+jej zaprzeczeniem.  Czyli jeżeli hipoteza mówi: w modelu nie ma AC, to hipoteza alternatywna mówi: 
+w modelu jest AC. Już Rzymianie wiedzieli że tertium-non-datur...
+
+Każdy współczesny program statystyczny czy arkusz kalkulacyjny podaje owo prawdopodobieństwo. Jeżeli
+jest ono małe to odrzucamy hipotezę a jeżeli nie jest małe to nie ma podstaw do odrzucenia.
+
+Hipotezę nazywamy hipotezą zerową ($H_0$), hipotezę przeciwną do zerowej nazywamy alternatywną ($H_1$),
+przyjętą jako minimalna do podjęcia 
+decyzji wartość prawdopodobieństwo nazywamy poziomem istotności (*significance*)
+
+```
+## albo test Boxa-Ljunga, małe wartości p świadczą o AC
+Box.test(res, type='Ljung-Box')
+```
+
+Jeżeli w teście Boxa-Ljunga otrzymaliśmy małą wartość $p$ to występuje autokorelacja składnika losowego.
+Jest to sygnał że być może należy użyć innej metody (modelu); albo mając do wyboru model 
+z AC i bez AC (formalnie taki w którym nie wykazano istnienia AC) należy wybrać ten drugi.
+
+## Uproszczona procedura wyboru modelu
 
 * oszacować kilka konkurencyjnych modeli;
 
-* wybrać ten, dla którego dopasowanie dla zbioru testowego jest najlepsze; 
+* wybrać ten, dla którego dopasowanie **dla zbioru testowego** jest najlepsze, 
+ **reszty są nieobciążone i nieskorelowane**; 
 
 * powtórzyć oszacowanie dla całości dostępnych danych
 

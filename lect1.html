@@ -445,26 +445,39 @@ z1 &lt;- window (z, start=c(2016, 4))</code></pre>
 res &lt;- residuals (fit)
      
 ## wizualna ocena nieobciążoności/stałości wariancji
-plot (res, main='tytuł-wykresu', xlab='ośX', ylab='ośY')
-
-## wizualna ocena nieskorelowania
+plot (res, main='tytuł-wykresu', xlab='ośX', ylab='ośY')</code></pre>
+<p>na tym wykresie reszty powinny przypadkowo oscylować wokół zera. Jeżeli zaś są systematycznie powyżej/poniżej to świadczy to o tym że są <strong>obciążone</strong> Jeżeli systematycznie rosną/maleją, to nie mają stałej wariancji</p>
+<pre><code>## wizualna ocena nieskorelowania
 ## funkcja autokorelacji
-Acf(res, main='...')
-
-## albo test Boxa-Ljunga, duże wartości p świadczą o braku AC
-Box.test(res, type='Ljung-Box')
-
-## wizualna ocena normalności reszt
+Acf(res, main='...')</code></pre>
+<p>wykres ten posiada dwie poziome linie określające maksymalną akceptowaną wielkość współczynnika korelacji, którą można uznać za przypadkową a nie wynikające z tego, że składnik losowy z dwóch okresów jest istotnie skorelowany. Słupki dla kolejnych opóźnień powinny być poniżej/powyżej tych linii</p>
+<pre><code>## wizualna ocena normalności reszt
 hist(res)</code></pre>
+<p>Kształt histogramu powinien być zbliżony do normalnego, w szczególności winien być zbliżony do symetrycznego. Asymetria świadczy że rozkład reszt <strong>nie jest normalny</strong>.</p>
+<p>Oprócz metod <em>na oko</em> można użyć testów. Idea testów statystycznych jest następująca: stawiamy pewną (hipo)tezę, którą <strong>weryfikujemy</strong> używając do tego stosownego zbioru danych.</p>
+<p>Prosty przykład: rzucamy monetą i stawiamy hipotezę że jest symetryczna co by oznaczało że prawdopodobieństwo wyrzucenia orła albo reszki jest jednakowe. Rzucamy monetą, wypadło orzeł, czy można coś powiedzieć o symetryczności monety? Rzucamy dwa razy wypadł w obu przypadkach orzeł. Takie coś się zdarza 1 raz na 4, więc także niespecjalnie rzadko. Rzucamy dalej. W 12 próbach orzeł wypadł 11 razy. Takie coś się zdarza 12 razy na <span class="math inline">\(2^{12}\)</span> prób czyli około dwa razy na 100 prób. Sprawa zaczyna być podejrzana, że moneta jest faktycznie symetryczna.</p>
+<p>Wyznaczamy z góry i arbitralnie prawdopodobieństwo popełnienia błędu przy weryfikowaniu naszej (hipo)tezy. Np 5% (co oznacza że przeciętnie mylimy się 5 razy na 100). Przy 5% błędzie eksperyment z 12 rzutami wskazał, że moneta jest niesymetryczna, bo zdarzenie pn. <em>wypadło 11 orłów</em> zdarza się raz na 50 razy czyli około 2% (przypomnę, że zdarzenie dwa orły na dwa rzuty to aż 25%.)</p>
+<p>Czy można powiedzieć rzucając raz czy dwa razy że moneta jest symetryczna? No nie bardzo. Raczej można powiedzieć że <strong>nic nie wskazuje że jest niesymetryczna</strong> a to co innego.</p>
+<p>Wracając do 11 orłów. Prawdopodobieństwo które założyliśmy to prawdopodobieństwo zdarzenia że <em>moneta jest symetryczna</em> a mimo to wypadło 11 orłów na 12 prób. Czyli monetę zdyskwalifikowaliśmy niesłusznie. To się nazywa <em>false-positive</em> (uznanie za błąd czegoś co błędem nie jest) albo błąd pierwszego rodzaju (<em>type I error</em>).</p>
+<p>Ale jest jeszcze drugi możliwy błąd zwany <em>false-negative</em> (uznanie za prawdę czegoś co jest błędne, błąd drugiego rodzaju albo <em>type II error</em>). <strong>Prawdopodobieństwa popełnienia tego błędu nie określilśmy</strong> zatem nie można powiedzieć <strong>moneta jest symetryczna</strong> jeżeli eksperyment zakończył się wynikiem z prawdopodobieństwem mniejszym od zakładanego (dla statystyka takie twierdzenie zawsze będzie <strong>prawdą z określonym błędem</strong> a tutaj nie ma tego określonego błędu)</p>
+<p>Reasumując jeżeli w wyniku eksperymentu otrzymamy wynik mało prawdopodobny z punktu widzenia zakładanej hipotezy to odrzucamy ją a jak nie to <strong>nie mamy podstaw do odrzucenia</strong> (co nie oznacza, że przyjmujemy).</p>
+<p>W nauce generalnie wykazanie fałszywości (<strong>falsyfikacja) jest bardziej pewna niż wykazanie prawdziwości.</strong></p>
+<p>Jedynie hipotezy sfalsyfikowane są naukowe (prawdziwe). Nauka rozwija się dzięki kolejnemu odrzucaniu sfalsyfikowanych teorii. Indukcja to lipa (BTW)</p>
+<p>Nawet nie wiedząc niczego więcej można interpretować z mądrą miną <strong>każdy test statystyczny</strong> ideą których jest podjęcie decyzji o pewnej hipotezie na podstawie wyniku eksperymentu. Jeżeli ten wynik jest mało prawdopodobny to hipotezę należy odrzucić co oznacza przyjęcie za prawdę <strong>hipotezy alternatywnej</strong>, która zwykle jest jej zaprzeczeniem. Czyli jeżeli hipoteza mówi: w modelu nie ma AC, to hipoteza alternatywna mówi: w modelu jest AC. Już Rzymianie wiedzieli że tertium-non-datur…</p>
+<p>Każdy współczesny program statystyczny czy arkusz kalkulacyjny podaje owo prawdopodobieństwo. Jeżeli jest ono małe to odrzucamy hipotezę a jeżeli nie jest małe to nie ma podstaw do odrzucenia.</p>
+<p>Hipotezę nazywamy hipotezą zerową (<span class="math inline">\(H_0\)</span>), hipotezę przeciwną do zerowej nazywamy alternatywną (<span class="math inline">\(H_1\)</span>), przyjętą jako minimalna do podjęcia decyzji wartość prawdopodobieństwo nazywamy poziomem istotności (<em>significance</em>)</p>
+<pre><code>## albo test Boxa-Ljunga, małe wartości p świadczą o AC
+Box.test(res, type='Ljung-Box')</code></pre>
+<p>Jeżeli w teście Boxa-Ljunga otrzymaliśmy małą wartość <span class="math inline">\(p\)</span> to występuje autokorelacja składnika losowego. Jest to sygnał że być może należy użyć innej metody (modelu); albo mając do wyboru model z AC i bez AC (formalnie taki w którym nie wykazano istnienia AC) należy wybrać ten drugi.</p>
 </div>
-<div id="uproszczona-procedura-wyboru-modelu" class="section level3">
-<h3>Uproszczona procedura wyboru modelu</h3>
+</div>
+<div id="uproszczona-procedura-wyboru-modelu" class="section level2">
+<h2>Uproszczona procedura wyboru modelu</h2>
 <ul>
 <li><p>oszacować kilka konkurencyjnych modeli;</p></li>
-<li><p>wybrać ten, dla którego dopasowanie dla zbioru testowego jest najlepsze;</p></li>
+<li><p>wybrać ten, dla którego dopasowanie <strong>dla zbioru testowego</strong> jest najlepsze, <strong>reszty są nieobciążone i nieskorelowane</strong>;</p></li>
 <li><p>powtórzyć oszacowanie dla całości dostępnych danych</p></li>
 </ul>
-</div>
 </div>
 <div id="wybrane-metody-prognozowania" class="section level2">
 <h2>Wybrane metody prognozowania</h2>

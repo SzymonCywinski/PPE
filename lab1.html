@@ -374,12 +374,18 @@ summary {
 <ul>
 <li><p>Projekt wykonują grupy max 3 osobowe</p></li>
 <li><p>Każda grupa prognozuje dwa różne szeregi czasowe (w sensie sezonowość/jej brak; inna częstotliwość). Szeregi wyszukujemy samodzielnie. Zalecana częstotliwość miesięczna, kwartalna ale może być też dzienna czy tygodniowa</p></li>
-<li><p>Każda grupa wyznacza kilka prognoz (różnymi metodami) i porównuje otrzymane wyniki</p></li>
-<li><p>Przygotowuje raport w opisanym niżej formacie Rmd, wysyła go na githuba</p></li>
+<li><p>Każda grupa wyznacza 3 prognozy (różnymi metodami) i porównuje otrzymane wyniki (szczegóły patrz niżej)</p></li>
+<li><p>Każda grupa przygotowuje 2 raporty w opisanym niżej formacie Rmd i wysyła je na githuba</p></li>
+<li><p>Żeby <strong>ułatwić zadanie maksymalnie</strong> przygotowano <strong>przykład oraz szablon</strong>. Przykład to pliki <code>mleko.R</code> oraz <code>mleko.Rmd</code>. Szablon to <code>Projek1.R</code> oraz <code>Projekt1.Rmd</code>.</p></li>
+<li><p>W plikach <code>Projekt1.R</code> oraz <code>Projekt1.Rmd</code> miejsca, które wymagają dopasowania do konretnego projektu wyróżniono jako <code>☛☛☛ ### ☚☚☚</code> (gdzie ### oznacza coś, co trzeba wpisać samodzielnie zaś znaki ☛/☚ oczywiście usunąć). Dopasowanie szablonu do konkretnego projektu polega na wypełnieniu <strong>tylko tych fragmentów</strong> resztę zostawiamy bez zmian.</p></li>
+<li><p>Zalecane jest <strong>najpierw</strong> wykonanie wszystkich obliczeń w pliku <code>Projekt1.R</code> a jak już wszystko będzie działać, dopisanie komentarzy/objaśnień do pliku <code>Projekt1.Rmd</code>.</p></li>
+<li><p>Koniecznie należy zmienić nazwę <code>Projekt1.Rmd</code> na odpowiadający temu co projekt prognozuje <strong>oraz po podkreślniku</strong> dopisanie bieżącego roku (2020 nawet jak będziemy wysyłali w styczniu). Np jeżeli prognozowana jest liczba oddanych do użytku mieszkań to dobrą nazwą będzie <code>mieszkania_2020.Rmd</code></p></li>
+<li><p>Na githuba wysyłamy dwa pliki Rmd (oddzielnie dla dwóch projektów) + pliki z danymi CSV (niech plik CSV nazywa się <strong>tak jak plik Rmd</strong>, tylko zamiast Rmd ma rozszerzenie <code>csv</code>), innych plików nie wysyłamy</p></li>
 </ul>
 </div>
 <div id="opis-formatu-rmd" class="section level2">
 <h2>Opis formatu Rmd</h2>
+<p><strong>W zasadzie niepotrzebny, bo państwo mają wypełnić szablon</strong> ale jeżeli ktoś chce świadomie wypełniać:-)</p>
 <p>Format R markdown to prosty sposób na tworzenie <em>dynamicznych dokumentów</em>. Dynamizm polega na tym, że dokument zawiera procedury języka R + opis. <strong>Przetworzenie dokumentu</strong> powoduje wykonanie procedur oraz wstawienie wyników. Opis jest przepisywany. Takie podejście <strong>jest lepsze</strong> od modelu: w programie X liczę, potem kopiuję wyniki do programu Y i dodaję tam opis…</p>
 <p>To co czytasz jest przykładem dokumentu w formacie Rmd. Obejrzyj go w RStudio a następnie naciśnij guzik Knit () a zobaczysz dokument przetworzony.</p>
 <div id="krótki-przykład-rmd" class="section level3">
@@ -414,9 +420,30 @@ summary {
 </div>
 <div id="publikowanie-raportu" class="section level2">
 <h2>Publikowanie raportu</h2>
-<p>Raport należy wysłać do repozytorium pod adresem <a href="https://github.com/hrpunio/PPE/tree/master/projekty_2020" class="uri">https://github.com/hrpunio/PPE/tree/master/projekty_2020</a></p>
-<p>Żeby móc dodawać do <a href="https://github.com/hrpunio/PPE/tree/master/projekty_2020" class="uri">https://github.com/hrpunio/PPE/tree/master/projekty_2020</a> trzeba założyć konto na serwerze github.com a następnie wysłać mi login użytkownika. Ja dodam tego użytkownika do uprawnionych do zapisywania do repozytorium.</p>
-<p>Szczegóły na następnym spotkaniu bo nikt mi jeszcze nie przysłał swojego loginu.</p>
+<p>Raport należy wysłać do repozytorium pod adresem <a href="https://github.com/hrpunio/PPE_projekty" class="uri">https://github.com/hrpunio/PPE_projekty</a></p>
+<p>Żeby móc dodawać do <a href="https://github.com/hrpunio/PPE_projekty" class="uri">https://github.com/hrpunio/PPE_projekty</a> trzeba założyć konto na serwerze github.com a następnie wysłać mi login użytkownika. Ja dodam tego użytkownika do uprawnionych do zapisywania do repozytorium (trzeba potwierdzić moje zaproszenie)</p>
+</div>
+<div id="podłączenie-do-rstudio" class="section level2">
+<h2>Podłączenie do RStudio</h2>
+<p>Trzeba zainstalować program git, <a href="https://git-scm.com/download/win" class="uri">https://git-scm.com/download/win</a></p>
+<p>Upewnić się że RStudio wie gdzie znajduje się program <code>git.exe</code>: Tools→Global Options→Git/Svn w polu <code>git executable</code> powinna być ścieżka do programu <code>git.exe</code>, jeżeli nie ma należy wpisać.</p>
+<p>Ściągamy <a href="https://github.com/hrpunio/PPE_projekty" class="uri">https://github.com/hrpunio/PPE_projekty</a>: <code>File→New Project→Version Control→Git</code> w polu <em>repository url</em> wpisujemy adres repozytorium (kończący się na <code>.git</code>; do pobrania ze strony Githuba); w polu <em>Project directory name</em> wpisujemy nazwę katalogu do którego zostanie ściągnięte repozytorium, np. <code>PPE_projekty</code>; w polu <em>Create project as subdirectory of</em> wybieramy katalog w który zostanie stworzony katalog <code>PPE_projekty</code>.</p>
+<p>Naciskamy <code>Create project</code>. Zawartość <a href="https://github.com/hrpunio/PPE_projekty" class="uri">https://github.com/hrpunio/PPE_projekty</a> zostanie pobrana i zapisana do <code>PPE_projekty</code>. RStudio zainicjalizuje nowy projekt.</p>
+<p>Kopiujemy do <code>PPE_projekty</code> pliki z projektem, np niech to będą <code>mieszkania_2020.Rmd</code> + <code>mieszkania_2020.csv</code></p>
+<p>Naciskamy ikonę git w RStudio, wybieramy <code>Commit</code>; lewe górne okno zawiera listę zmodyfikowanych plików w katalogu <code>PPE_projekty</code>. Powinny tam być pliki <code>mieszkania_2020.Rmd</code> + <code>mieszkania_2020.csv</code>. Odptaszkowujemy <code>mieszkania_2020.Rmd</code> oraz <code>mieszkania_2020.csv</code></p>
+<p>W oknie obok (górne/prawe) wpisujemy <strong>opis zmiany</strong> (np. <code>Przesyłamy projekt do oceny</code>) naciskamy <code>Commit</code></p>
+<p>Przypuszczalnie operacja skończy się błędem bo powinniśmy się uprzednio zidentyfikować. Nic straconego robimy to teraz (jak to zrobić pokazano na filmie <a href="https://www.youtube.com/watch?v=7vNQh-2TwoI" class="uri">https://www.youtube.com/watch?v=7vNQh-2TwoI</a>)</p>
+<p>Naciskamy <code>Commit</code> powtórnie; zamykamy okno; naciskamy ikonę Push (zielona strzałka w prawym górnym rogu); dokonujemy autoryzacji (nazwa/hasło)</p>
+<p>Jeżeli uda nam się bez błędu dokonać autoryzacji to <code>mieszkania_2020.Rmd</code> oraz <code>mieszkania_2020.csv</code> zostaną wysłane na serwer. Koniec zrobione.</p>
+</div>
+<div id="filmy-instruktarzowe" class="section level2">
+<h2>Filmy instruktarzowe</h2>
+<ul>
+<li><p>Instalowanie R/Rstudio <a href="https://www.youtube.com/watch?v=zO7iOLT4YxU" class="uri">https://www.youtube.com/watch?v=zO7iOLT4YxU</a></p></li>
+<li><p>Integracja RStudio/Github <a href="https://www.youtube.com/watch?v=7vNQh-2TwoI" class="uri">https://www.youtube.com/watch?v=7vNQh-2TwoI</a></p></li>
+<li><p>Importowanie danych z Biuletynu Statystycznego GUS z wykorzystaniem LibreOffice <a href="https://www.youtube.com/watch?v=OeoFVs7trgo" class="uri">https://www.youtube.com/watch?v=OeoFVs7trgo</a></p></li>
+<li><p>Redagowanie/tworzenie raportu w formacie Rmd <a href="https://www.youtube.com/watch?v=5Oh7U_mbkPo" class="uri">https://www.youtube.com/watch?v=5Oh7U_mbkPo</a></p></li>
+</ul>
 </div>
 
 
